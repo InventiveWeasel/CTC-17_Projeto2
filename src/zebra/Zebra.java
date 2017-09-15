@@ -65,7 +65,8 @@ public class Zebra {
 		//O noruegues mora ao lado da casa azul
 		if(Math.abs(nor-blue) != 1)
 			return false;
-
+		//O fumante de cigarros Winston cria caramujos
+		if
 		return true;
 	}
 }
