@@ -11,7 +11,8 @@ public class Main {
 		long starttime,endtime;
 		starttime = System.currentTimeMillis();
 		Node result;
-		random.setSeed(123456789);
+		//random.setSeed(123456789);
+		random.setSeed(System.currentTimeMillis());
 		//Estado inicial aleatório
 		do {
 			Queen[] state = new Queen[Queen.N];

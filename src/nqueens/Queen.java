@@ -1,7 +1,7 @@
 package nqueens;
 
 public class Queen {
-	public static int N = 8;
+	public static int N = 25;
 	
 	private int row, col;
 	

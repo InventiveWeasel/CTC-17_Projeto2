@@ -9,6 +9,7 @@ public class HillClimbing {
 		current = new Node();
 		next = new Node();
 		current.setState(initialState);
+		current.calculateHeuristic();
 		
 		while(counter != 10) {
 			//System.out.println("currentA: "+current.getValue());
@@ -30,6 +31,7 @@ public class HillClimbing {
 			}
 			//counter++;
 			current.setState(next.getState());
+			current.calculateHeuristic();
 		}
 		return current;
 	}

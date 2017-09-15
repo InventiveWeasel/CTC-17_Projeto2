@@ -21,7 +21,7 @@ public class Node implements Comparable<Node>{
 		for(int i = 0; i < Queen.N; i++) {
 			state[i] = new Queen(q[i].getRow(), q[i].getCol());
 		}
-		calculateHeuristic();
+		//calculateHeuristic();
 	}
 	
 	public Queen[] getState() {
@@ -52,7 +52,7 @@ public class Node implements Comparable<Node>{
 				Node suc = new Node();
 				suc.setState(state);
 				actualRow = suc.state[i].getRow();
-				suc.state[i].setRow((actualRow + i) % Queen.N);
+				suc.state[i].setRow((actualRow + j) % Queen.N);
 				
 				//Calculando valor da heuristica
 				suc.calculateHeuristic();
@@ -63,7 +63,7 @@ public class Node implements Comparable<Node>{
 		Collections.sort(sucessors);
 	}
 	
-	private void calculateHeuristic() {
+	public void calculateHeuristic() {
 		this.value = 0;
 		for(int i = 0; i < Queen.N; i++) {
 			for(int j = i+1; j < Queen.N; j++) {
