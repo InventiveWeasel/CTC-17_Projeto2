@@ -41,6 +41,12 @@ public class Node implements Comparable<Node>{
 		return sucessors.get(randIndex);
 	}
 	
+	public Node randomSucessor(){
+		generateSucessors();
+		int randIndex = random.nextInt(sucessors.size());
+		return sucessors.get(randIndex);
+	}
+	
 	private void generateSucessors() {
 		double auxX,auxY;
 		//System.out.println("Determinando sucessores x = "+getPoint().getX()+"  y = "+getPoint().getY());
