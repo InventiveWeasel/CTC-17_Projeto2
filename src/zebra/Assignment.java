@@ -4,6 +4,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Assignment {
+	private final int NOT_FOUND = -1;
+	
 	private Map<Integer,Var> variables;
 	
 	public Assignment() {
@@ -19,10 +21,25 @@ public class Assignment {
 	}
 	
 	public int getValue(int varName){
-		return variables.get(varName).getValue();
+		int value;
+		try{
+			value = variables.get(varName).getValue();
+		} catch(NullPointerException e){
+			return NOT_FOUND;
+		}
+		
+		return value; 
 	}
 	
 	public int getAssignsQuant(){
 		return variables.size();
+	}
+	
+	public void printAssignment(String[] varNames){
+		Var var;
+		for(int i = 0; i < variables.size(); i++){
+			var = variables.get(i);
+			System.out.println("ID: "+varNames[var.getID()]+"  Value: "+var.getValue());
+		}
 	}
 }

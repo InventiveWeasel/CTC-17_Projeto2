@@ -10,8 +10,10 @@ public class Main {
 	
 	
 	public static void main(String[] args) {
-		System.out.println("f(0,0) deve ser 4");
-		System.out.println(TwoVarFunc.calc(5, 5));
+		//System.out.println("f(0,0) deve ser 4");
+		//System.out.println(TwoVarFunc.calc(5, 5));
+		random.setSeed(System.currentTimeMillis());
+		long t0 = System.currentTimeMillis();
 		Node result;
 		int counter = 0;
 		double aux = 0, delta = 1,max = 0;
@@ -22,11 +24,14 @@ public class Main {
 			if(aux > max) {
 				delta = Math.abs(max-aux);
 				max = aux;
-				System.out.println("delta: "+delta);
-				System.out.println("max: "+max);System.out.println(result.getPoint().getX());System.out.println(result.getPoint().getY());
+				System.out.println("Ponto de parada");
+				System.out.println("Valor: "+max);
+				System.out.println("Coordenadas: ");
+				System.out.println("X: "+result.getPoint().getX()+"   Y: "+result.getPoint().getY());
+				System.out.println();
 				counter++;
 			}
-		} while (counter != 1000);
+		} while ((System.currentTimeMillis() - t0)/1000 < 20);
 		System.out.println(delta);
 		System.out.println(result.getValue());
 		System.out.println(result.getPoint().getX());

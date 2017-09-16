@@ -5,6 +5,15 @@ import java.util.ArrayList;
 public class PSR implements Checker{
 	private final int N = 5;
 	
+	private final int NOT_FOUND = -1;
+	private final int DEFAULT_VALUE = -1;
+	
+	public static String[] varNames = {
+			"Vermelho", "Amarelo", "Azul", "Verde", "Marfim",
+			"Ingles", "Espanhol", "Noruegues", "Ukraniano", "Japones",
+			"Cachorro", "Raposa", "Caramujo", "Cavalo", "Zebra",
+			"Kool", "Chester", "Winston", "Lucky Strike", "Parliament",
+			"Suco de laranja", "Cha", "Cafe", "Leite", "Agua"};
 	//Variaveis
 	//Casas
 	private final int RED = 0;
@@ -43,45 +52,7 @@ public class PSR implements Checker{
 	
 	private boolean[] isAssigned;
 	private boolean[][] domainValues;
-	//private String[] varNames = {
-	//		"english", "spanish", "norwegian", "ukranian", "japanese"};
 	
-	/*
-	//Casas
-		private final String RED = "red";
-		private final String YELLOW = "yellow";
-		private final String BLUE = "blue";
-		private final String GREEN = "green";
-		private final String IVORY = "ivory";
-		
-		//Nacionalidades
-		private final String ENGLISH = "english";
-		private final String SPANISH = "spanish";
-		private final String NORWEGIAN = "norwegian";
-		private final String UKRANIAN = "ukranian";
-		private final String JAPANESE = "japanese";
-		
-		//Animais
-		private final String DOG = "dog";
-		private final String FOX = "fox";
-		private final String SNAIL = "snail";
-		private final String HORSE = "horse";
-		private final String ZEBRA = "zebra";
-		
-		//Cigarros
-		private final String KOOL = "kool";
-		private final String CHESTER = "chester";
-		private final String WINSTON = "winston";
-		private final String LUCKY = "lucky";
-		private final String PARLIAMENT = "parliament";
-		
-		//BEBIDA
-		private final String JUICE = "orange juice";
-		private final String TEA = "tea";
-		private final String COFFEE = "coffee";
-		private final String MILK = "milk";
-		private final String WATER = "water";
-	*/	
 	
 	public PSR(){
 		isAssigned = new boolean[N*N];
@@ -90,8 +61,10 @@ public class PSR implements Checker{
 	
 	public Var getUnassignedVar(){
 		for(int i = 0; i < isAssigned.length; i++){
-			if(isAssigned[i] == false)
-				return new Var(i,-1,i/N);
+			if(isAssigned[i] == false){
+				Var var = new Var(i,-1,i/N);
+				return var;
+			}
 		}
 		return null;
 	}
@@ -105,49 +78,112 @@ public class PSR implements Checker{
 		return values;
 	}
 	
-	public boolean checkConsistency(Assignment a) {
+	public boolean checkConsistency(Assignment a, Var var){
+		a.addVar(var);
+		boolean result = verifyVar(a);
+		a.removeVar(var);
+		if(result)
+			return true;
+		else{
+			return false;
+		}
+	}
+	
+	public void setValueToVar(Var var, int value){
+		isAssigned[var.getID()] = true;
+		domainValues[var.getDomain()][value] = true;
+		var.setValue(value);
+	}
+	
+	public void removeValueOfVar(Var var) {
+		isAssigned[var.getID()] = false;
+		domainValues[var.getDomain()][var.getValue()] = false;
+		var.setValue(DEFAULT_VALUE);
+	}
+	
+	public boolean verifyVar(Assignment a) {
+		int v1,v2;
 		//O ingles mora na casa vermelha
-		if(a.getValue(ENGLISH) != a.getValue(RED))
+		v1 = a.getValue(ENGLISH);
+		v2 = a.getValue(RED);
+		if(v1 != v2 && v1 != NOT_FOUND && v2 != NOT_FOUND)
 			return false;
+		
 		//O espanhol e dono do cachorro
-		if(a.getValue(SPANISH) != a.getValue(DOG))
+		v1 = a.getValue(SPANISH);
+		v2 = a.getValue(DOG);
+		if(v1 != v2 && v1 != NOT_FOUND && v2 != NOT_FOUND)
 			return false;
+		
 		//O noruegues mora na primeira casa a esquerda
-		if(a.getValue(NORWEGIAN) != 1)
+		v1 = a.getValue(NORWEGIAN);
+		if(v1 != 0 && v1 != NOT_FOUND)
 			return false;
+		
 		//Fumam-se cigarros Kool na casa amarela
-		if(a.getValue(KOOL) != a.getValue(YELLOW))
+		v1 = a.getValue(KOOL);
+		v2 = a.getValue(YELLOW);
+		if(v1 != v2 && v1 != NOT_FOUND && v2 != NOT_FOUND)
 			return false;
+		
 		//O homem que fuma cigarros Chesterfield mora na casa ao lado do homem
 		//que mora com a raposa 
-		if(Math.abs(a.getValue(CHESTER)-a.getValue(FOX)) != 1)
+		v1 = a.getValue(CHESTER);
+		v2 = a.getValue(FOX);
+		if(Math.abs(v1 - v2) != 1 && v1 != NOT_FOUND && v2 != NOT_FOUND)
 			return false;
+		
 		//O noruegues mora ao lado da casa azul
-		if(Math.abs(a.getValue(NORWEGIAN)-a.getValue(BLUE)) != 1)
+		v1 = a.getValue(NORWEGIAN);
+		v2 = a.getValue(BLUE);
+		if(Math.abs(v1 - v2) != 1 && v1 != NOT_FOUND && v2 != NOT_FOUND)
 			return false;
+		
 		//O fumante de cigarros Winston cria caramujos
-		if(a.getValue(WINSTON) != a.getValue(SNAIL))
+		v1 = a.getValue(WINSTON);
+		v2 = a.getValue(SNAIL);
+		if(v1 != v2 && v1 != NOT_FOUND && v2 != NOT_FOUND)
 			return false;
+		
 		//O fumante de cigarros Lucky Strike bebe suco de laranja
-		if(a.getValue(LUCKY) != a.getValue(JUICE))
+		v1 = a.getValue(LUCKY);
+		v2 = a.getValue(JUICE);
+		if(v1 != v2 && v1 != NOT_FOUND && v2 != NOT_FOUND)
 			return false;
+		
 		//O ucraniano bebe cha
-		if(a.getValue(UKRANIAN) != a.getValue(TEA))
+		v1 = a.getValue(UKRANIAN);
+		v2 = a.getValue(TEA);
+		if(v1 != v2 && v1 != NOT_FOUND && v2 != NOT_FOUND)
 			return false;
+		
 		//O japones fuma cigarros Parliament
-		if(a.getValue(JAPANESE) != a.getValue(PARLIAMENT))
+		v1 = a.getValue(JAPANESE);
+		v2 = a.getValue(PARLIAMENT);
+		if(v1 != v2 && v1 != NOT_FOUND && v2 != NOT_FOUND)
 			return false;
+		
 		//Fumam-se cigarros Kool em uma casa ao lado da casa em que fica o cavalo
-		if(Math.abs(a.getValue(KOOL) - a.getValue(HORSE)) != 1)
+		v1 = a.getValue(KOOL);
+		v2 = a.getValue(HORSE);
+		if(Math.abs(v1 - v2) != 1 && v1 != NOT_FOUND && v2 != NOT_FOUND)
 			return false;
+		
 		//Bebe-se cafe na casa verde
-		if(a.getValue(GREEN) != a.getValue(COFFEE))
+		v1 = a.getValue(GREEN);
+		v2 = a.getValue(COFFEE);
+		if(v1 != v2 && v1 != NOT_FOUND && v2 != NOT_FOUND)
 			return false;
+		
 		//A casa verde esta imediatamente a direita (a sua direita) da casa marfim
-		if(a.getValue(GREEN)-a.getValue(IVORY) != 1)
+		v1 = a.getValue(GREEN);
+		v2 = a.getValue(IVORY);
+		if(v1 - v2 != 1 && v1 != NOT_FOUND && v2 != NOT_FOUND)
 			return false;
+		
 		//Bebe-se leite na casa do meio
-		if(a.getValue(MILK)!=3)
+		v1 = a.getValue(MILK);
+		if(v1 != 2 && v1 != NOT_FOUND)
 			return false;
 		return true;
 	}

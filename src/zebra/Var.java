@@ -3,11 +3,12 @@ package zebra;
 public class Var {
 	private int id;
 	private int value;
-	private int domain;
+	private int dom;
 	
 	public Var(int id, int v, int d) {
-		setValue(v);
-		setDomain(d);
+		this.id = id;
+		this.value = v;	
+		this.dom = d;
 	}
 
 	public int getValue() {
@@ -19,11 +20,11 @@ public class Var {
 	}
 
 	public int getDomain() {
-		return domain;
+		return dom;
 	}
 
 	public void setDomain(int domain) {
-		this.domain = domain;
+		this.dom = domain;
 	}
 	
 	public int getID(){

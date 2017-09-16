@@ -3,6 +3,12 @@ package minfunc;
 
 public class HillCli {
 	Node current, next;
+	private double alfa = 0.5;
+	private long Tinit = 1000000;
+	
+	public HillCli(){
+		
+	}
 	
 	public Node run(Point initialPoint) {
 		int counter = 0;
@@ -11,6 +17,8 @@ public class HillCli {
 		next = new Node();
 		current.setPoint(initialPoint);
 		Point suc;
+		long T = Tinit;
+		
 		
 		while(counter != 10) {
 			suc = current.highestSucessor().getPoint();
@@ -22,7 +30,6 @@ public class HillCli {
 			
 			
 			if((currentValue - next.getValue()) < 0.00001) {
-				//System.out.println("entrou");
 				counter++;
 			} else {
 				counter = 0;
@@ -32,4 +39,5 @@ public class HillCli {
 		}
 		return current;
 	}
+	
 }

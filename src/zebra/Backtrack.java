@@ -19,14 +19,16 @@ public class Backtrack {
 		var = psr.getUnassignedVar();
 		domainValues = psr.getDomainValues(var.getDomain());
 		for(int i = 0; i < domainValues.size(); i++){
-			var.setValue(domainValues.get(i));
+			psr.setValueToVar(var, domainValues.get(i));
 			//testando o valor
-			if(psr.checkConsistency(a)){
+			if(psr.checkConsistency(a, var)){
+				a.addVar(var);
 				result = recBacktrack(a);
 				if(result != null)
 					return result;
 				a.removeVar(var);
 			}
+			psr.removeValueOfVar(var);
 		}
 		return null;
 		
