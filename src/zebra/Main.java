@@ -2,9 +2,9 @@ package zebra;
 
 public class Main {
 	public static void main(String[] args){
-		PSR psr = new PSR();
-		Backtrack back = new Backtrack(psr);
+		PSR psr1 = new PSR1();
+		Backtrack back = new Backtrack(psr1);
 		Assignment result = back.recBacktrack(new Assignment());
-		result.printAssignment(PSR.varNames);
+		result.printAssignment(PSR1.varNames, psr1.N);
 	}
 }

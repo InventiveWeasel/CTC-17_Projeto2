@@ -21,15 +21,17 @@ public class Main {
 			TempSim hc = new TempSim();
 			result = hc.run(new Point(random.nextInt(100)-50,random.nextInt(100)-50));
 			aux = result.getValue();
-			if(aux > max) {
-				max = aux;
+			if(result.isMax()){
 				maxX = result.getPoint().getX();
 				maxY = result.getPoint().getY();
-				System.out.println("Ponto de parada");
-				System.out.println("Valor: "+max);
+				System.out.println("Ponto de maximo");
+				System.out.println("Valor: "+result.getValue());
 				System.out.println("Coordenadas: ");
 				System.out.println("X: "+maxX+"   Y: "+maxY);
 				System.out.println();
+			}
+			if(aux > max) {
+				max = aux;
 			}
 		} while ((System.currentTimeMillis() - t0)/1000 < 20);
 		System.out.println("---------------------------------");

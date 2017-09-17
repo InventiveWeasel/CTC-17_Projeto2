@@ -5,7 +5,7 @@ import java.util.Random;
 public class TempSim {
 	Node current, next;
 	private double alfa = 0.5;
-	private long Tinit = 1000000;
+	private long Tinit = 1000000000;
 	
 	public TempSim(){
 		
@@ -28,9 +28,11 @@ public class TempSim {
 			
 			suc = current.randomSucessor().getPoint();
 			next.setPoint(new Point(suc.getX(), suc.getY()));
-			//System.out.println("Sucessor: X = "+next.getPoint().getX()+"  Y = "+next.getPoint().getY());
 			
 			delta = next.getValue() - current.getValue();
+			
+			if(current.isMax())
+				return current;
 			
 			if(delta > 0)
 				current.setPoint(new Point(next.getPoint().getX(), next.getPoint().getY()));

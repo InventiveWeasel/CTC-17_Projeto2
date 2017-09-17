@@ -1,0 +1,70 @@
+Ponto de parada
+Valor 1.5765708378032025E-238
+Coordenadas 
+X 5.0   Y 28.400000000000006
+
+Ponto de parada
+Valor 4.264602781334673E-151
+Coordenadas 
+X 13.0   Y 21.799999999999997
+
+Ponto de parada
+Valor 2.738713223075319E-88
+Coordenadas 
+X 14.1   Y -15.9
+
+Ponto de parada
+Valor 2.3359905578335323E-11
+Coordenadas 
+X 3.8   Y -9.8
+
+Ponto de parada
+Valor 6.609024231836785E-11
+Coordenadas 
+X -1.2000000000000002   Y 8.0
+
+Ponto de parada
+Valor 9.761401856359382E-11
+Coordenadas 
+X 2.2   Y 8.9
+
+Ponto de parada
+Valor 1.250152866735486E-9
+Coordenadas 
+X 1.1   Y 7.299999999999999
+
+Ponto de parada
+Valor 0.03131351019691977
+Coordenadas 
+X 0.1   Y -2.2
+
+Ponto de parada
+Valor 0.3134861808826045
+Coordenadas 
+X 3.9999999999999996   Y 5.400000000000002
+
+Ponto de parada
+Valor 0.9607894391523235
+Coordenadas 
+X -5.0   Y 5.199999999999999
+
+Ponto de parada
+Valor 2.109169696172194
+Coordenadas 
+X 0.0   Y 0.8
+
+Ponto de parada
+Valor 3.804917698002856
+Coordenadas 
+X 0.2   Y 0.1
+
+Ponto de parada
+Valor 4.0
+Coordenadas 
+X 0.0   Y 0.0
+
+---------------------------------
+RESULTADO
+Valor Maximo 4.0
+Coordenadas 
+X 0.0   Y 0.0

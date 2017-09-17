@@ -91,4 +91,12 @@ public class Node implements Comparable<Node>{
 			return 0;
 			
 	}
+	
+	public boolean isMax(){
+		for(int i = 0; i < sucessors.size(); i++) {
+			if(value <= sucessors.get(i).getValue())
+				return false;
+		}
+		return true;
+	}
 }

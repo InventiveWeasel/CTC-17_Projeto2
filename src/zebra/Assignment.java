@@ -35,11 +35,28 @@ public class Assignment {
 		return variables.size();
 	}
 	
-	public void printAssignment(String[] varNames){
+	public void printAssignment(String[] varNames, int nDom){
 		Var var;
-		for(int i = 0; i < variables.size(); i++){
-			var = variables.get(i);
-			System.out.println("ID: "+varNames[var.getID()]+"  Value: "+var.getValue());
+		int zebra = 0, agua = 0;
+		for(int i = 0; i < nDom; i++){
+			System.out.println("Casa "+i+":");
+			for(int j = 0; j < varNames.length; j++){
+				var = variables.get(j);
+				if(var.getValue() == i)
+					System.out.println(varNames[var.getID()]);
+				if(varNames[var.getID()].equals("Zebra"))
+					zebra = var.getValue();
+				if(varNames[var.getID()].equals("Agua"))
+					agua = var.getValue();
+			}
+			System.out.println();
 		}
+		System.out.println("---------------------------------");
+		System.out.println("RESPOSTAS");
+		System.out.println("Onde vive a zebra?");
+		System.out.println("R: Na casa "+zebra);
+		System.out.println();
+		System.out.println("Onde se bebe agua?");
+		System.out.println("R: Na casa "+agua);
 	}
 }

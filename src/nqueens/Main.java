@@ -9,9 +9,8 @@ public class Main {
 	
 	public static void main(String[] args) {
 		long starttime,endtime;
-		starttime = System.currentTimeMillis();
+		starttime = System.nanoTime();
 		Node result;
-		//random.setSeed(123456789);
 		random.setSeed(System.currentTimeMillis());
 		//Estado inicial aleatório
 		do {
@@ -25,7 +24,7 @@ public class Main {
 			HillClimbing hc = new HillClimbing();
 			result = hc.run(state);
 		} while(result.getValue()!= 0);
-		endtime = System.currentTimeMillis();
+		endtime = System.nanoTime();
 		printState(result.getState());
 		System.out.println("Tempo total: "+(endtime-starttime)/1000);
 	}
